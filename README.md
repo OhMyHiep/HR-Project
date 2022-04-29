@@ -1,5 +1,11 @@
-# BeaconFire-HRProject Requirement
+TEAM:
+https://github.com/DungLe2911
+https://github.com/qma16443
+https://github.com/OhMyHiep
 
+*The project is incomplete, and largely focuses on the backend so there is currently no functional UI.
+
+# HRProject Requirements
 ---
 ## For Employee
 1. Login
