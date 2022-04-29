@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: housing-service
+  mvc:
+    servlet:
+      path: /housing-service
+
+  security:
+    user:
+      name: user
+      password: 9e2c35af-b8fe-4534-91bb-4ec482cb3f51
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://applicationservice.cppriojucxmm.us-east-1.rds.amazonaws.com:3306/HousingService
+    password: Beaconfire1!
+    username: admin
+
+server:
+  port: 0
+
+security:
+  jwt:
+    token:
+      key: JavaTraining
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+database:
+  hibernate:
+    url: jdbc:mysql://applicationservice.cppriojucxmm.us-east-1.rds.amazonaws.com:3306/ApplicationService
+    driver: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: Beaconfire1!
+    dialect: org.hibernate.dialect.MySQL8Dialect
+    showsql: true
+    hbm2ddl:
+      auto: update

@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: authentication
+  mvc:
+    servlet:
+      path: /authentication
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://applicationservice.cppriojucxmm.us-east-1.rds.amazonaws.com:3306/Authentication
+    password: Beaconfire1!
+    username: admin
+
+server:
+  port: 9999
+
+security:
+  jwt:
+    token:
+      key: JavaTraining
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

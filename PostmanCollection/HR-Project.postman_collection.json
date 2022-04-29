@@ -1,0 +1,750 @@
+{
+	"info": {
+		"_postman_id": "12b4c45e-9322-4c73-a8da-d2b92cc55cdc",
+		"name": "HR-Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Generate HR account and roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/authentication",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HR Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user1\",\r\n    \"password\":\"user1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/authentication/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"authentication",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HR Generate Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsInBlcm1pc3Npb25zIjpbeyJhdXRob3JpdHkiOiJIUiJ9LHsiYXV0aG9yaXR5IjoiRW1wbG95ZWUifV19.3siPcEVo9TUcA8zzmsEFXKN-w8jTw-ycwj2RM1cbZlc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9000/authentication/generate?email=user2@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"authentication",
+								"generate"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "user2@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User 2 register with token - success",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImV4cGlyYXRpb25UaW1lIjoxNjQ5MTg4NTY3NTMzfQ.RgsBJBI_RtD5v71_FfJGX1X5D5sqxYJKKYrhEY7S7BY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user2\",\r\n    \"password\":\"user2\",\r\n    \"email\":\"user2@gmail.com\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/authentication/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"authentication",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User 2 Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user2\",\r\n    \"password\":\"user2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/authentication/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"authentication",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User 2 try to generate token - failed",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMiIsInBlcm1pc3Npb25zIjpbeyJhdXRob3JpdHkiOiJFbXBsb3llZSJ9XX0.FjPhDBlQuBs4ryIkMAPWJBhp_lPAn8UwnqBgetlGdrI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9000/authentication/generate?email=user3@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"authentication",
+								"generate"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "user3@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User 3 register the token above - expired",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImV4cGlyYXRpb25UaW1lIjoxNjQ5MTg4NTY3NTMzfQ.RgsBJBI_RtD5v71_FfJGX1X5D5sqxYJKKYrhEY7S7BY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user3\",\r\n    \"password\":\"user3\",\r\n    \"email\":\"user3@gmail.com\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/authentication/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"authentication",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HR-Application",
+			"item": [
+				{
+					"name": "Employee-Service",
+					"item": [
+						{
+							"name": "Get active Visa status list (WORK IN PROGRESS - INCORRECTLY return)",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Get Visa Detail Given ID",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Employee(success)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/employee-service/Employee/ByFilter",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"employee-service",
+										"Employee",
+										"ByFilter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Employee By Id(success)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/employee-service/624de8df23ac8a75703905cf",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"employee-service",
+										"624de8df23ac8a75703905cf"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter Employee By Email(success)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"filter\":\"email\",\n    \"value\":\"aa\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/employee-service/ByFilter",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"employee-service",
+										"ByFilter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter Employee By First Name(success)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"filter\":\"first name\",\n    \"value\":\"Jia\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/employee-service/ByFilter",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"employee-service",
+										"ByFilter"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Composite-Service",
+					"item": [
+						{
+							"name": "Add Employee OnBoarding",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "applicationForm",
+											"value": "{\n    \"firstName\":\"John\",\n    \"lastName\":\"Doe\",\n    \"middleName\":\"Alexander\",\n    \"email\":\"testUser1@gmail.com\",\n    \"cellPhone\":\"123-456-7890\",\n    \"gender\":\"Male\",\n    \"ssn\":\"123-45-6789\",\n    \"dob\":\"2022-11-29T12:12:12\",\n    \"startDate\":\"2022-11-29T12:12:12\",\n    \"endDate\":\"2022-11-29T12:12:12\",\n    \"driverLicense\":\"b23jhb23x\",\n    \"driverLicenseExpiration\":\"2022-11-29T12:12:12\",\n    \"emergency\":{\n        \"firstName\": \"qwecqwcqwc\",\n        \"lastName\": \"ecqwecqewc\",\n        \"cellPhone\": \"wecwec\",\n        \"email\": \"wqecqwe\",\n        \"relationship\": \"wecqwcw\"\n    },\n    \"address\":{\n        \"addressLine1\":\"aaaaaaaaaaaaaaaaaaaa\",\n        \"addressLine2\":\"bbbbbbbbbbbbbbbbbbbb\",\n        \"city\":\"cccccccccccccc\",\n        \"state\":\"WA\",\n        \"zipCode\":\"99999\"\n    },\n    \"workAuth\":{\n        \"isCitizen\":\"false\",\n        \"authorization\":\"F-1000\",\n        \"startDate\":\"2022-11-29T12:12:12\",\n        \"endDate\":\"2022-11-29T12:12:12\"\n    },\n    \"personalDocumentList\":[\n        {\n            \"path\":\"abcxyz\",\n            \"title\":\"fileName1\",\n            \"comment\":\"Driver License\",\n            \"createDate\":\"2022-11-29T12:12:12\"\n        },\n        {\n            \"path\":\"abcxyz\",\n            \"title\":\"fileName2\",\n            \"comment\":\"AED\",\n            \"createDate\":\"2022-11-29T12:12:12\"\n        }\n    ]    \n}",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "HR-Project/PostmanCollection/HR/CompositeService.postman_collection.json"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:9000/composite-service/upload",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"composite-service",
+										"upload"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login to Hompage (Accepted application)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/composite-service/6250266166a3c22a07b8573e",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"composite-service",
+										"6250266166a3c22a07b8573e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login to Homepage (Rejected Application)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/composite-service/624e8fd48f21144cd116e06a",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"composite-service",
+										"624e8fd48f21144cd116e06a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User update info after login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"John\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/composite-service/6250266166a3c22a07b8573e",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"composite-service",
+										"6250266166a3c22a07b8573e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Application-Service",
+					"item": [
+						{
+							"name": "submit application",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsInBlcm1pc3Npb25zIjpbeyJhdXRob3JpdHkiOiJIUiJ9LHsiYXV0aG9yaXR5IjoiRW1wbG95ZWUifV19.3siPcEVo9TUcA8zzmsEFXKN-w8jTw-ycwj2RM1cbZlc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"employeeID\":\"testing\",\n    \"createDate\":213456789,\n    \"lastModificationDate\":\"223456789\",\n    \"status\":\"pending\",\n    \"comment\":\"awaitng approval\"\n   \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/application-service/application/upload",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"application-service",
+										"application",
+										"upload"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get All digital Doc",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsInBlcm1pc3Npb25zIjpbeyJhdXRob3JpdHkiOiJIUiJ9LHsiYXV0aG9yaXR5IjoiRW1wbG95ZWUifV19.3siPcEVo9TUcA8zzmsEFXKN-w8jTw-ycwj2RM1cbZlc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/application-service/",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"application-service",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "upload Digital Document",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsInBlcm1pc3Npb25zIjpbeyJhdXRob3JpdHkiOiJIUiJ9LHsiYXV0aG9yaXR5IjoiRW1wbG95ZWUifV19.3siPcEVo9TUcA8zzmsEFXKN-w8jTw-ycwj2RM1cbZlc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "m8gpG2kQ5/noSpaces2.txt"
+										},
+										{
+											"key": "formDetails",
+											"value": "{\n    \"type\": \"visa\",\n    \"isRequired\": \"true\",\n    \"description\": \"fake description\"\n}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:9000/application-service/documents/upload",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"application-service",
+										"documents",
+										"upload"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check Application Status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsInBlcm1pc3Npb25zIjpbeyJhdXRob3JpdHkiOiJIUiJ9LHsiYXV0aG9yaXR5IjoiRW1wbG95ZWUifV19.3siPcEVo9TUcA8zzmsEFXKN-w8jTw-ycwj2RM1cbZlc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/application-service/employee/testing",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"application-service",
+										"employee",
+										"testing"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get Application by id Rejected",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsInBlcm1pc3Npb25zIjpbeyJhdXRob3JpdHkiOiJIUiJ9LHsiYXV0aG9yaXR5IjoiRW1wbG95ZWUifV19.3siPcEVo9TUcA8zzmsEFXKN-w8jTw-ycwj2RM1cbZlc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/application-service/3?email=dung.h.le@wsu.edu",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"application-service",
+										"3"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "dung.h.le@wsu.edu"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Application by id Accepted",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/application-service/1?email=dung.h.le@wsu.edu",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"application-service",
+										"1"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "dung.h.le@wsu.edu"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Application By ID Pending",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsInBlcm1pc3Npb25zIjpbeyJhdXRob3JpdHkiOiJIUiJ9LHsiYXV0aG9yaXR5IjoiRW1wbG95ZWUifV19.3siPcEVo9TUcA8zzmsEFXKN-w8jTw-ycwj2RM1cbZlc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/application-service/5?email=dung.h.le@wsu.edu",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"application-service",
+										"5"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "dung.h.le@wsu.edu"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Housing-Service",
+					"item": [
+						{
+							"name": "Get All Houses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/housing-service/houses",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"housing-service",
+										"houses"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: employee-service
+          uri: lb://employee-service
+          predicates:
+            - Path=/employee-service/**
+
+        - id: composite-service
+          uri: lb://composite-service
+          predicates:
+            - Path=/composite-service/**
+
+        - id: application-service
+          uri: lb://application-service
+          predicates:
+            - Path=/application-service/**
+
+        - id: housing-service
+          uri: lb://housing-service
+          predicates:
+            - Path=/housing-service/**
+
+        - id: authentication
+          uri: lb://authentication
+          predicates:
+            - Path=/authentication/**
+
+        - id: homepage-service
+          uri: lb://homepage-service
+          predicates:
+            - Path=/homepage-service/**
+
+
+server:
+  port: 9000
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

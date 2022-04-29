@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "39d6c1c1-3c61-496d-b6c8-62d758012675",
+		"name": "CompositeService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Adding documents for on boarding",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "applicationForm",
+							"value": "{\n    \"firstName\":\"John\",\n    \"lastName\":\"Doe\",\n    \"middleName\":\"Alexander\",\n    \"email\":\"testUser1@gmail.com\",\n    \"cellPhone\":\"123-456-7890\",\n    \"gender\":\"Male\",\n    \"ssn\":\"123-45-6789\",\n    \"dob\":\"2022-11-29T12:12:12\",\n    \"startDate\":\"2022-11-29T12:12:12\",\n    \"endDate\":\"2022-11-29T12:12:12\",\n    \"driverLicense\":\"b23jhb23x\",\n    \"driverLicenseExpiration\":\"2022-11-29T12:12:12\",\n    \"emergency\":{\n        \"firstName\": \"qwecqwcqwc\",\n        \"lastName\": \"ecqwecqewc\",\n        \"cellPhone\": \"wecwec\",\n        \"email\": \"wqecqwe\",\n        \"relationship\": \"wecqwcw\"\n    },\n    \"address\":{\n        \"addressLine1\":\"aaaaaaaaaaaaaaaaaaaa\",\n        \"addressLine2\":\"bbbbbbbbbbbbbbbbbbbb\",\n        \"city\":\"cccccccccccccc\",\n        \"state\":\"WA\",\n        \"zipCode\":\"99999\"\n    },\n    \"workAuth\":{\n        \"isCitizen\":\"false\",\n        \"authorization\":\"F-1000\",\n        \"startDate\":\"2022-11-29T12:12:12\",\n        \"endDate\":\"2022-11-29T12:12:12\"\n    },\n    \"personalDocumentList\":[\n        {\n            \"path\":\"abcxyz\",\n            \"title\":\"fileName1\",\n            \"comment\":\"Driver License\",\n            \"createDate\":\"2022-11-29T12:12:12\"\n        },\n        {\n            \"path\":\"abcxyz\",\n            \"title\":\"fileName2\",\n            \"comment\":\"AED\",\n            \"createDate\":\"2022-11-29T12:12:12\"\n        }\n    ]    \n}",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:9000/composite-service/upload",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"composite-service",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
