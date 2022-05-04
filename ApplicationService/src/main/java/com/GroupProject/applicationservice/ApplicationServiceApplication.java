@@ -26,7 +26,6 @@ public class ApplicationServiceApplication {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-
     public static void main(String[] args) {
         SpringApplication.run(ApplicationServiceApplication.class, args);
 //        rabbitTemplate.convertAndSend("Application","rejection","hiephuynh224@gmail.com+++application rejected");

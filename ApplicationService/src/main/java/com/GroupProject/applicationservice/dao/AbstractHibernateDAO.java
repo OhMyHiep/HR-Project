@@ -21,9 +21,9 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
     public T findById(final Integer id) {
         return getCurrentSession().get(clazz, id);
     }
-    
+
     public BigInteger add(T t) {
-    	return (BigInteger) getCurrentSession().save(t);
+        return (BigInteger) getCurrentSession().save(t);
     }
 
     protected Session getCurrentSession() {
